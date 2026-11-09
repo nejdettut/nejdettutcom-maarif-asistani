@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MaarifApp } from "@/components/maarif-app";
 
 export default function HomePage() {
@@ -17,8 +18,16 @@ export default function HomePage() {
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base dark:text-slate-300">
             Konu, sınıf seviyesi, zorluk ve soru tipini seç — yapay zekâ Bloom
             taksonomisine göre sınav soruları üretir. Cevap anahtarı + çözüm +
-            Word belgesi dahil. (MVP: OCR ve OMR modülleri sonraki sürümde.)
+            Word belgesi dahil.
           </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <Link
+              href="/ocr"
+              className="inline-flex items-center gap-1.5 rounded-full border border-brand-crimson/30 bg-brand-crimson/10 px-3 py-1 text-xs font-semibold text-brand-crimson transition hover:bg-brand-crimson/20"
+            >
+              📄 Modül 2: Kağıt sınav OCR (yeni)
+            </Link>
+          </div>
         </div>
         <a
           href="https://www.nejdettut.com/projeler/maarif-suite"
