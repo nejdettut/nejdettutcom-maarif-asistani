@@ -25,7 +25,13 @@ export default function HomePage() {
               href="/ocr"
               className="inline-flex items-center gap-1.5 rounded-full border border-brand-crimson/30 bg-brand-crimson/10 px-3 py-1 text-xs font-semibold text-brand-crimson transition hover:bg-brand-crimson/20"
             >
-              📄 Modül 2: Kağıt sınav OCR (yeni)
+              📄 Modül 2: Kağıt sınav OCR
+            </Link>
+            <Link
+              href="/omr"
+              className="inline-flex items-center gap-1.5 rounded-full border border-brand-crimson/30 bg-brand-crimson/10 px-3 py-1 text-xs font-semibold text-brand-crimson transition hover:bg-brand-crimson/20"
+            >
+              🔘 Modül 3: Optik okuma (yeni)
             </Link>
           </div>
         </div>
