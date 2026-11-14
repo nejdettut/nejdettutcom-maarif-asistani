@@ -20,20 +20,6 @@ export default function HomePage() {
             taksonomisine göre sınav soruları üretir. Cevap anahtarı + çözüm +
             Word belgesi dahil.
           </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <Link
-              href="/ocr"
-              className="inline-flex items-center gap-1.5 rounded-full border border-brand-crimson/30 bg-brand-crimson/10 px-3 py-1 text-xs font-semibold text-brand-crimson transition hover:bg-brand-crimson/20"
-            >
-              📄 Modül 2: Kağıt sınav OCR
-            </Link>
-            <Link
-              href="/omr"
-              className="inline-flex items-center gap-1.5 rounded-full border border-brand-crimson/30 bg-brand-crimson/10 px-3 py-1 text-xs font-semibold text-brand-crimson transition hover:bg-brand-crimson/20"
-            >
-              🔘 Modül 3: Optik okuma (yeni)
-            </Link>
-          </div>
         </div>
         <a
           href="https://www.nejdettut.com/projeler/maarif-suite"
@@ -42,6 +28,60 @@ export default function HomePage() {
           ← nejdettut.com&apos;a dön
         </a>
       </header>
+
+      <section className="mb-10 grid gap-4 sm:grid-cols-2">
+        <Link
+          href="/ocr"
+          className="group flex flex-col justify-between rounded-2xl border border-brand-crimson/30 bg-gradient-to-br from-brand-crimson/10 via-white to-white p-5 shadow-sm backdrop-blur transition hover:border-brand-crimson/60 hover:shadow-md dark:border-brand-crimson/40 dark:from-brand-crimson/15 dark:via-slate-900/60 dark:to-slate-900/60"
+        >
+          <div>
+            <div className="mb-3 flex items-center gap-3">
+              <span aria-hidden="true" className="text-3xl">📄</span>
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-crimson">
+                  Modül 2
+                </p>
+                <h2 className="text-lg font-bold tracking-tight text-slate-900 dark:text-slate-100">
+                  Kağıt Sınav OCR
+                </h2>
+              </div>
+            </div>
+            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              Elindeki yazılı sınavı fotoğrafla, yapay zeka soru listesini, şıkları
+              ve işaretli doğru cevapları çıkarsın. Türkçe karakterler korunur.
+            </p>
+          </div>
+          <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-crimson transition group-hover:translate-x-0.5">
+            OCR'a geç →
+          </span>
+        </Link>
+
+        <Link
+          href="/omr"
+          className="group flex flex-col justify-between rounded-2xl border border-brand-crimson/30 bg-gradient-to-br from-brand-crimson/10 via-white to-white p-5 shadow-sm backdrop-blur transition hover:border-brand-crimson/60 hover:shadow-md dark:border-brand-crimson/40 dark:from-brand-crimson/15 dark:via-slate-900/60 dark:to-slate-900/60"
+        >
+          <div>
+            <div className="mb-3 flex items-center gap-3">
+              <span aria-hidden="true" className="text-3xl">🔘</span>
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-crimson">
+                  Modül 3 · Yeni
+                </p>
+                <h2 className="text-lg font-bold tracking-tight text-slate-900 dark:text-slate-100">
+                  Optik Okuma (OMR)
+                </h2>
+              </div>
+            </div>
+            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              Standart cevap formu PDF&apos;ini üret, çıktısını al, doldurulmuş
+              formu fotoğrafla okut; cevap anahtarıyla saniyeler içinde puanla.
+            </p>
+          </div>
+          <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-crimson transition group-hover:translate-x-0.5">
+            OMR&apos;a geç →
+          </span>
+        </Link>
+      </section>
 
       <MaarifApp />
 
