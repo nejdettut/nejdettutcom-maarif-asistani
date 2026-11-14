@@ -230,8 +230,12 @@ Görseldeki ${count} soruluk OMR formunu analiz et. SADECE aşağıdaki JSON yap
     }
     parsedResult = result.data;
   } catch (err) {
+    const detail = err instanceof Error ? err.message : String(err);
     console.error("[omr] generateText failed:", err);
-    return json({ error: "OMR işlemi başarısız. Lütfen tekrar dene." }, 502);
+    return json(
+      { error: "OMR işlemi başarısız. Lütfen tekrar dene.", detail },
+      502,
+    );
   }
 
   if (!parsedResult.detected) {
