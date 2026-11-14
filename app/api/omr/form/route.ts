@@ -28,6 +28,23 @@ function parseOptions(url: URL): Options | string {
 // Letter grid: A B C D E — five options per question, 1-based row numbers.
 const CHOICES = ["A", "B", "C", "D", "E"] as const;
 
+// pdf-lib StandardFonts use WinAnsi encoding — Turkish-specific glyphs
+// (ı, ş, ğ, Ş, ...) and typographic punctuation (·, —) are absent and
+// throw at draw time. Transliterate everything we render so user-supplied
+// titles and classroom labels don't break the PDF.
+const TR_ASCII_MAP: Record<string, string> = {
+  "ı": "i", "İ": "I",
+  "ş": "s", "Ş": "S",
+  "ğ": "g", "Ğ": "G",
+  "ü": "u", "Ü": "U",
+  "ö": "o", "Ö": "O",
+  "ç": "c", "Ç": "C",
+  "·": "-", "—": "-", "–": "-",
+};
+function trToAscii(s: string): string {
+  return s.replace(/[ıİşŞğĞüÜöÖçÇ·—–]/g, (ch) => TR_ASCII_MAP[ch] ?? ch);
+}
+
 export async function GET(req: Request) {
   const limited = await rateLimit({
     action: "omr-form",
@@ -69,7 +86,7 @@ export async function GET(req: Request) {
   drawFiducial(30, 30); // bottom-left
 
   // Header
-  page.drawText(title, {
+  page.drawText(trToAscii(title), {
     x: 70,
     y: 800,
     size: 18,
@@ -77,7 +94,7 @@ export async function GET(req: Request) {
     color: ink,
   });
   if (sinif) {
-    page.drawText(`Sınıf: ${sinif}`, {
+    page.drawText(trToAscii(`Sınıf: ${sinif}`), {
       x: 70,
       y: 775,
       size: 11,
@@ -105,7 +122,9 @@ export async function GET(req: Request) {
 
   // Instructions
   page.drawText(
-    "Dikkat: Yalnızca tek bir seçeneği tamamen doldurunuz. Siliyorsanız temiz silin.",
+    trToAscii(
+      "Dikkat: Yalnızca tek bir seçeneği tamamen doldurunuz. Siliyorsanız temiz silin.",
+    ),
     { x: 60, y: 716, size: 9, font: fontRegular, color: ink },
   );
 
@@ -161,7 +180,9 @@ export async function GET(req: Request) {
 
   // Footer
   page.drawText(
-    "Zaman Robotu · AI Maarif Asistanı — nejdettut.com/projeler/maarif-suite",
+    trToAscii(
+      "Zaman Robotu · AI Maarif Asistanı — nejdettut.com/projeler/maarif-suite",
+    ),
     { x: 60, y: 48, size: 8, font: fontRegular, color: ink },
   );
 
