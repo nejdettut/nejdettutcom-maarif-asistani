@@ -210,12 +210,6 @@ Görseldeki ${count} soruluk OMR formunu analiz et. SADECE aşağıdaki JSON yap
       ],
       temperature: 0.1,
       maxOutputTokens: 4000,
-      // gemini-flash-latest resolves to Gemini 2.5 Flash (thinking=true);
-      // the thinking pass pushes us past the 90s function budget for OMR
-      // images. Disable thinking — the task is a pure vision classification.
-      providerOptions: {
-        google: { thinkingConfig: { thinkingBudget: 0 } },
-      },
     });
     const jsonText = extractJson(text);
     if (!jsonText) {
