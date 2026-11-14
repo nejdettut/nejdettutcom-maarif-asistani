@@ -122,6 +122,44 @@ const CARD =
 
 const MUTED_TEXT = "text-slate-500 dark:text-slate-400";
 
+const EXAMPLES: Array<{
+  label: string;
+  subject: Subject;
+  grade: Grade;
+  topic: string;
+  difficulty: Difficulty;
+  questionType: QuestionType;
+  count: number;
+}> = [
+  {
+    label: "Matematik · 6",
+    subject: "matematik",
+    grade: "ortaokul-6",
+    topic: "Kesirlerle toplama ve çıkarma",
+    difficulty: "orta",
+    questionType: "coktan-secmeli",
+    count: 10,
+  },
+  {
+    label: "Fen · 8",
+    subject: "fen-bilimleri",
+    grade: "ortaokul-8",
+    topic: "Basınç ve basınç kuvveti",
+    difficulty: "orta",
+    questionType: "karisik",
+    count: 8,
+  },
+  {
+    label: "Türkçe · 7",
+    subject: "turkce",
+    grade: "ortaokul-7",
+    topic: "Metin türleri ve anlatım biçimleri",
+    difficulty: "kolay",
+    questionType: "coktan-secmeli",
+    count: 10,
+  },
+];
+
 export function MaarifApp() {
   const [subject, setSubject] = useState<Subject>("matematik");
   const [customSubject, setCustomSubject] = useState("");
@@ -228,6 +266,30 @@ export function MaarifApp() {
             </h2>
           </div>
           <div className="space-y-4 p-5">
+            <div>
+              <p className={cn("mb-2 text-xs font-semibold uppercase tracking-wider", MUTED_TEXT)}>
+                Hazır örnekler
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {EXAMPLES.map((ex) => (
+                  <button
+                    key={ex.label}
+                    type="button"
+                    onClick={() => {
+                      setSubject(ex.subject);
+                      setGrade(ex.grade);
+                      setTopic(ex.topic);
+                      setDifficulty(ex.difficulty);
+                      setQuestionType(ex.questionType);
+                      setCount(ex.count);
+                    }}
+                    className="rounded-full border border-slate-300 bg-white/70 px-2.5 py-1 text-[11px] text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200"
+                  >
+                    {ex.label}
+                  </button>
+                ))}
+              </div>
+            </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className={cn("mb-1.5 block text-xs font-semibold uppercase tracking-wider", MUTED_TEXT)}>
