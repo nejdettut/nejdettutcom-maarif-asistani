@@ -49,7 +49,10 @@ function makeModel() {
     process.env.GEMINI_API_KEY ?? process.env.GOOGLE_GENERATIVE_AI_API_KEY;
   if (!key) return null;
   const provider = createGoogleGenerativeAI({ apiKey: key });
-  return provider("gemini-flash-latest");
+  // Prefer the no-thinking lite variant; the flash-latest alias resolves
+  // to Gemini 2.5 Flash where the default thinking pass regularly blows
+  // the 90s function budget on image classification.
+  return provider("gemini-2.5-flash-lite");
 }
 
 function extractJson(text: string): string | null {
