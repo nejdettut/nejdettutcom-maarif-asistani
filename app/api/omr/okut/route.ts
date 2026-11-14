@@ -49,10 +49,10 @@ function makeModel() {
     process.env.GEMINI_API_KEY ?? process.env.GOOGLE_GENERATIVE_AI_API_KEY;
   if (!key) return null;
   const provider = createGoogleGenerativeAI({ apiKey: key });
-  // Prefer the no-thinking lite variant; the flash-latest alias resolves
-  // to Gemini 2.5 Flash where the default thinking pass regularly blows
-  // the 90s function budget on image classification.
-  return provider("gemini-2.5-flash-lite");
+  // 2.5-flash-lite is closed to new users; Google explicitly redirects to
+  // the 3.5-lite line. It is a no-thinking vision model → fits the 90s
+  // function budget for OMR classification.
+  return provider("gemini-3.5-flash-lite");
 }
 
 function extractJson(text: string): string | null {
