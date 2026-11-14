@@ -151,6 +151,10 @@ Görseldeki sınav kağıdını oku ve aşağıdaki JSON yapısıyla birebir ayn
       ],
       temperature: 0.1,
       maxOutputTokens: 6000,
+      // Disable Gemini 2.5 Flash thinking; OCR is a direct vision pass.
+      providerOptions: {
+        google: { thinkingConfig: { thinkingBudget: 0 } },
+      },
     });
     const jsonText = extractJson(text);
     if (!jsonText) {
